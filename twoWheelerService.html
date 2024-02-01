@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>twoWheelerservice</title>
+    <style>
+        .location_radio_button{
+            background-color: blue;
+            width: 20%;
+            height: 100px;
+            position: relative;
+            left:80%
+        }
+        .location{
+            accent-color: #B9FC4D;
+            padding: 20px;
+            margin: 10px;
+           
+        }
+
+        .location:before{
+            content: "";
+            width: 200px;
+            height: 50px;
+            background-color: black;
+            display: block;
+           
+
+           
+            
+        }
+        .location input[type="radio"]:checked + .location:before{
+            background-color: #B9FC4D;
+            
+        }
+        .space{
+            margin: 20px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="location_radio_button">
+        <div class="space">
+            <input class="location" type="radio" title="currentlocation" name="location">
+        </div>
+        <div class="space">
+            <input class="location"  type="radio" title="locatespotter" name="location">
+        </div>
+        
+    </div>
+</body>
+</html>

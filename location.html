@@ -1,0 +1,180 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locate Your Location and Set Destination</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <p>Current Location: <span id="current-location"></span></p>
+    <p>Destination Address: <span id="destination-address">puliyal</span></p>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://api.opencagedata.com/geocode/v1/leaflet.js?key=a637c36161244804aa732283ffa00d77"></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var currentLocationMarker;
+
+        function getCurrentLocation() {
+            console.log(navigator);
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        }
+
+        function successCallback(position) {
+            console.log(position)
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            map.setView([latitude, longitude], 13);
+
+            if (currentLocationMarker) {
+                map.removeLayer(currentLocationMarker);
+            }
+
+            currentLocationMarker = L.marker([latitude, longitude]).addTo(map)
+                .bindPopup('Your Location').openPopup();
+            destinationLocationMarker=L.marker([9.847862,78.863232]).addTo(map)
+            document.getElementById('current-location').innerText = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        }
+
+        function errorCallback(error) {
+            alert('Error getting geolocation: ' + error.message);
+        }
+
+        function onMapClick(e) {
+            var clickedLatLng = e.latlng;
+
+            L.popup()
+                .setLatLng(clickedLatLng)
+                .setContent('Destination')
+                .openOn(map);
+
+            // Reverse Geocoding using OpenCage
+            L.Control.geocoder({
+                geocoder: L.Control.Geocoder.opencage('pk.ba866084b81f20ea792afab064135935'),
+                query: clickedLatLng.lat + ', ' + clickedLatLng.lng
+            }).on('markgeocode', function (event) {
+                var destinationAddress = event.geocode.name;
+                document.getElementById('destination-address').innerText = destinationAddress;
+            }).addTo(map);
+        }
+
+        map.on('click', onMapClick);
+
+        // Call the function to get current geolocation
+        getCurrentLocation();
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locate Your Location and Set Destination with Route</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <p>Current Location: <span id="current-location"></span></p>
+    <p>Destination Address: <span id="destination-address"></span></p>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="https://api.opencagedata.com/geocode/v1/leaflet.js?key=a637c36161244804aa732283ffa00d77&ip=157.49.241.4"></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var currentLocationMarker;
+        var destinationMarker;
+        var routingControl;
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        }
+
+        function successCallback(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            map.setView([latitude, longitude], 13);
+
+            if (currentLocationMarker) {
+                map.removeLayer(currentLocationMarker);
+            }
+
+            currentLocationMarker = L.marker([latitude, longitude]).addTo(map)
+                .bindPopup('Your Location').openPopup();
+
+            document.getElementById('current-location').innerText = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        }
+
+        function errorCallback(error) {
+            alert('Error getting geolocation: ' + error.message);
+        }
+
+        function onMapClick(e) {
+            var clickedLatLng = e.latlng;
+
+            if (destinationMarker) {
+                map.removeLayer(destinationMarker);
+                map.removeControl(routingControl);
+            }
+
+            destinationMarker = L.marker([9.848197,78.863205]).addTo(map)
+                .bindPopup('Destination').openPopup();
+
+            // Reverse Geocoding using OpenCage
+            L.Control.geocoder({
+                geocoder: L.Control.Geocoder.opencage('a637c36161244804aa732283ffa00d77'),
+                query: clickedLatLng.lat + ', ' + clickedLatLng.lng
+            }).on('markgeocode', function (event) {
+                var destinationAddress = event.geocode.name;
+                document.getElementById('destination-address').innerText = destinationAddress;
+            }).addTo(map);
+
+            // Routing
+            routingControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(currentLocationMarker.getLatLng().lat, currentLocationMarker.getLatLng().lng),
+                    clickedLatLng
+                ],
+                routeWhileDragging: true
+            }).addTo(map);
+        }
+
+        map.on('click', onMapClick);
+
+        // Call the function to get current geolocation
+        getCurrentLocation();
+    </script>
+</body>
+</html>

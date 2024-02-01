@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body >
+    <div class="container">
+        <!--Menubar-->
+       <nav class="navbar">
+            <div class="Menu_bar_Container">
+                <div class="Menu_bar_lists">
+                    <label class="logo menu_class">Vehicle <br> Service</label>
+                    <div class="menu_input menu_class" >
+                        
+                    </div>
+                    <div class="Menu_bar_button_and_lists">
+                        <div class="Menu_bar_button">
+                            <div class="userLogin menu_class">
+                                <div class="login_button">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                    <Label>Login</Label>
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="drop_DownContainer">
+                            <ul class="list_of_info">
+                                <li id="new_user" ><label class="space_between_user">New Customer ? </label> <a class="space_between_user signup" href="">Sign Up</a></li>
+                                <li><i class="fa fa-user-circle-o space_between_icon" id="profile_icon" aria-hidden="true"></i> <Label class="space_between space_between_icon">My Profile</Label> </li>
+                                <li><i class="fa fa-history space_between_icon" aria-hidden="true"></i> <label class="space_between_icon">History</label></li>
+                            </ul>
+            
+                        </div>
+                    </div>
+                    <div class="worker_info">
+                        <label>Join Our Team</label>
+                    </div>
+                    
+                </div>
+            
+                <!-- <img src="\image\wallpaper1.jpg" alt="">
+                <div class="container">
+                    <h2>Sign In</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="button" onclick="signIn()">Sign In</button>
+                    </form>
+                </div> -->
+            </div>
+           
+       </nav>
+       <!--Overview-->
+       <div class="vehicle_overview_container">
+            <div class="vehicle_service_over_view">
+                <div class="loading_images">
+                    <div class="two_wheeler slider">
+                        <img class="two_wheeler vehicle_images" src="https://drive.google.com/thumbnail?id=1J9Gs6KSgk1stPyE0S9ygGjA-W9igvbKO&sz=w1000" alt="Two wheeler service" srcset="">
+                    </div>
+                    <div class="auto slider">
+                        <img class="auto vehicle_images" src="https://drive.google.com/thumbnail?id=1zSvVDmRCFtcvAUTLnXawovXVP94nBwa2&sz=w1000" alt="auto service" srcset="">
+                    </div>
+                    <div class="four_wheeler slider">
+                        <img class="four_wheeler vehicle_images" src="https://drive.google.com/thumbnail?id=1yCSv6WXzErHj_9hLRPaDHYBViwWyLHMX&sz=w1000" alt="Four wheeler service" srcset="">
+                    </div>
+                    <div class="high_vehicle slider">
+                        <img class="high_vehicle vehicle_images" src="https://drive.google.com/thumbnail?id=1-882TveKNAwWNjNcnS4IjsFH92SCRAdn&sz=w1000" alt="High vehicleservice" srcset="">
+                    </div>
+                    <div class="two_wheeler slider">
+                        <img class="two_wheeler vehicle_images" src="https://drive.google.com/thumbnail?id=1J9Gs6KSgk1stPyE0S9ygGjA-W9igvbKO&sz=w1000" alt="Two wheeler service" srcset="">
+                    </div>
+                </div>
+                <div class="overView_content">
+                    <h2>OverView</h2>
+                    <p>The "Online Vehicle Service Assistance" project facilitates seamless communication between vehicle owners and service professionals during emergencies. Users register accounts to access the platform, where they can request immediate assistance in case of breakdowns. Real-time alerts notify service professionals, enabling prompt response to users' needs. Transparent communication allows remote assessment of issues and cost estimates. By leveraging technology, the project optimizes service workflows, benefiting both vehicle owners and professionals. This user-friendly initiative sets a new standard for on-the-go vehicle assistance, promoting efficiency and connectivity within the automotive service community.</p>
+                </div>
+                
+            </div>
+       </div>
+       <!--services-->
+       <div class="services_containers">
+            <div class="services_sub_container">
+                <div class="service_space_between_container">
+                    <div class="two_wheeler_services vehicle_service_container">
+                        <img class="two_wheeler_service_images vehicle_services" src='https://drive.google.com/thumbnail?id=1J9Gs6KSgk1stPyE0S9ygGjA-W9igvbKO&sz=w1000' alt="Two wheeler service" srcset="">
+                        <h2>Two Wheeler Services</h2>
+                        <p>Includes : Motor Cycle , Scooters</p>
+                        <button type="button" class="getservice" onclick="TwoWheelerServices()">Get Service</button>
+                    </div>
+                    <div class="auto_services vehicle_service_container">
+                        <img class="auto_service_images vehicle_services" src="https://drive.google.com/thumbnail?id=1zSvVDmRCFtcvAUTLnXawovXVP94nBwa2&sz=w1000" alt="auto service" srcset="">
+                        <h2>Auto Services</h2>
+                        <p>Includes : Auto</p>
+                        <button type="button" class="getservice" onclick="autoServices()">Get Service</button>
+                    </div>
+                    <div class="four_wheeler_services vehicle_service_container">
+                        <img class="four_wheeler_service_images vehicle_services" src="https://drive.google.com/thumbnail?id=1yCSv6WXzErHj_9hLRPaDHYBViwWyLHMX&sz=w1000" alt="Four wheeler service" srcset="">
+                        <h2>Four Wheeler Services</h2>
+                        <p>Includes: Car, Jeep</p>
+                        <button type="button" class="getservice" onclick="fourWheelerServices()">Get Service</button>
+                    </div>
+                    <div class="high_vehicle_services vehicle_service_container">
+                        <img class="high_vehicle_service_images vehicle_services" src="https://drive.google.com/thumbnail?id=1-882TveKNAwWNjNcnS4IjsFH92SCRAdn&sz=w1000" alt="High vehicleservice" srcset="">
+                        <h2>Heavy vehicle Services</h2>
+                        <p>Includes: Truck, Buses, Construction Vehicle, Commercial Vehicles</p>
+                        <button type="button" class="getservice" onclick="HighvehicleServices()">Get Service</button>
+                    </div>
+                    
+                </div>
+            </div>
+       </div>
+       <footer class="vehiceService_footer">
+
+       </footer>
+    </div>
+    
+
+    <script>
+        function TwoWheelerServices() {
+            window.location.href = 'twoWheelerService.html';
+        }
+        function autoServices(){
+            window.location.href = 'autoService.html';
+        }
+        function fourWheelerServices(){
+            window.location.href = 'fourWheelerService.html';
+        }
+        function HighvehicleServices(){
+            window.location.href = 'HighVehicleService.html';
+        }
+        
+    </script>
+</body>
+</html>
